@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<style>
+	h2{
+		text-align: center;
+	}
+	#button1{
+		text-align: center;
+	}
+
+	#myButton {
+		padding: 2%;
+		margin: 2%;}
+</style>
+<body>
+	<h2>Rock, Paper, Scissors</h2>
+
+	<div id="button1"></div>
+	
+	<h2 id="gp"></h2>
+	<h2 id="pw"></h2>
+	<h2 id="cw"></h2>
+	<h2 id="numr"></h2>
+	<h2 id="nump"></h2>
+	<h2 id="nums"></h2>
+	<h2 id="numd"></h2>
+
+
+</body>
+<script type="text/javascript">
+	var gPlayed=0;
+	var comWins= 0;
+	var pWins=0;
+	var draws=0;
+	var rk=0;
+	var pa=0;
+	var sc=0;
+
+	var b1 = document.createElement("button");
+	b1.setAttribute("id", "myButton"); 
+	b1.setAttribute("class", "btn btn-primary"); 
+	b1.addEventListener("click", function(){go(0);});
+	var text1 = document.createTextNode("Rock"); 
+	b1.appendChild(text1);
+	var divButton1 = document.getElementById("button1").appendChild(b1);
+
+	var b2 = document.createElement("button");
+	b2.setAttribute("id", "myButton"); 
+	b2.setAttribute("class", "btn btn-primary"); 
+	b2.addEventListener("click", function(){go(1);});
+	var text2 = document.createTextNode("Paper"); 
+	b2.appendChild(text2);
+	var divButton2 = document.getElementById("button1").appendChild(b2);
+
+	var b3 = document.createElement("button");
+	b3.setAttribute("id", "myButton"); 
+	b3.setAttribute("class", "btn btn-primary"); 
+	b3.addEventListener("click",function(){go(2);});
+	var text3 = document.createTextNode("Scissors"); 
+	b3.appendChild(text3);
+	var divButton3 = document.getElementById("button1").appendChild(b3);
+
+	var b4 = document.createElement("button");
+	b4.setAttribute("id", "myButton"); 
+	b4.setAttribute("class", "btn btn-primary"); 
+	b4.addEventListener("click",function(){results();});
+	var text4 = document.createTextNode("Results"); 
+	b4.appendChild(text4);
+	var divButton4 = document.getElementById("button1").appendChild(b4);
+
+    function go(useroption) {
+    	var computeroptions = ["rock", "paper", "scissors"];
+    	var rand = Math.floor((Math.random() * 2));
+    	console.log("User option " + useroption)
+    	console.log("Computer option " + computeroptions[rand]);
+
+    	if (useroption == "0" && computeroptions[rand] == "rock") {
+    		console.log("draws");
+    		gPlayed++;
+    		draws++;
+    		rk+=2;
+    		
+    	}
+    	else if (useroption == "0" && computeroptions[rand] == "paper") {
+    		console.log("comWins");
+    		gPlayed++;
+    		comWins++;
+    		rk++;
+    		pa++;
+    	}
+    	else if (useroption == "0" && computeroptions[rand] == "scissors") {
+    		console.log("pWins");
+    		gPlayed++;
+    		pWins++;
+    		rk++;
+    		sc++;
+    	}
+    	else if (useroption == "1" && computeroptions[rand] == "rock") {
+    		console.log("pWins");
+    		gPlayed++;
+    		pWins++;
+    		pa++;
+    		rk++;
+    	}
+    	else if (useroption == "1" && computeroptions[rand] == "paper") {
+    		console.log("draws");
+    		gPlayed++;
+    		draws++;
+    		pa+=2;
+    		
+    	}
+    	else if (useroption == "1" && computeroptions[rand] == "scissors") {
+    		console.log("comWins");
+    		gPlayed++;
+    		comWins++;
+    		pa++;
+    		sc++;
+    	}
+    	else if (useroption == "2" && computeroptions[rand] == "rock") {
+    		console.log("comWins");
+    		gPlayed++;
+    		comWins++;
+    		sc++;
+    		rk++;
+    	}
+    	else if (useroption == "2" && computeroptions[rand] == "paper") {
+    		console.log("pWins");
+    		gPlayed++;
+    		pWins++;
+    		pa++;
+    		sc++;
+    	}
+    	else if (useroption == "2" && computeroptions[rand] == "scissors") {
+    		console.log("draws");
+    		gPlayed++;
+    		draws++;
+    		sc+=2;
+    	}
+    	
+    }
+
+    function results() {
+    	document.getElementById("gp").innerHTML = "Games Played: " + gPlayed;
+    	document.getElementById("pw").innerHTML = "Player won: " + pWins;
+    	document.getElementById("cw").innerHTML = "Computer won: " + comWins;
+    	document.getElementById("numr").innerHTML = "Number of times rock was selected: " + rk;
+    	document.getElementById("nump").innerHTML = "Number of times paper was selected: " + pa;
+    	document.getElementById("nums").innerHTML = "Number of times scissors was selected: " + sc;
+    	document.getElementById("numd").innerHTML = "Number of draws: " + draws;
+    }
+</script>
+</html>

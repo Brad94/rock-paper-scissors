@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+<style>
+	h2{
+		text-align: center;
+	}
+	#button1{
+		text-align: center;
+	}
+
+	#myButton {
+		padding: 2%;
+		margin: 2%;}
+</style>
+<body>
+	<h2>Rock, Paper, Scissors</h2>
+
+	<div id="button1"></div>
+	
+	<h2 id="gp"></h2>
+	<h2 id="pw"></h2>
+	<h2 id="cw"></h2>
+	<h2 id="numr"></h2>
+	<h2 id="nump"></h2>
+	<h2 id="nums"></h2>
+	<h2 id="numd"></h2>
+
+
+</body>
+<script type="text/javascript">
+	var gPlayed=0;
+	var comWins= 0;
+	var pWins=0;
+	var draws=0;
+	var rk=0;
+	var pa=0;
+	var sc=0;
+
+	var b1 = document.createElement("button");
+	b1.setAttribute("id", "myButton"); 
+	b1.setAttribute("class", "btn btn-primary"); 
+	b1.addEventListener("click", function(){go("Rock");});
+	var text1 = document.createTextNode("Rock"); 
+	b1.appendChild(text1);
+	var divButton1 = document.getElementById("button1").appendChild(b1);
+
+	var b2 = document.createElement("button");
+	b2.setAttribute("id", "myButton"); 
+	b2.setAttribute("class", "btn btn-primary"); 
+	b2.addEventListener("click", function(){go("Paper");});
+	var text2 = document.createTextNode("Paper"); 
+	b2.appendChild(text2);
+	var divButton2 = document.getElementById("button1").appendChild(b2);
+
+	var b3 = document.createElement("button");
+	b3.setAttribute("id", "myButton"); 
+	b3.setAttribute("class", "btn btn-primary"); 
+	b3.addEventListener("click",function(){go("Scissors");});
+	var text3 = document.createTextNode("Scissors"); 
+	b3.appendChild(text3);
+	var divButton3 = document.getElementById("button1").appendChild(b3);
+
+    var b4 = document.createElement("button");
+    b4.setAttribute("id", "myButton"); 
+    b4.setAttribute("class", "btn btn-primary"); 
+    b4.addEventListener("click", function(){go("Spock");});
+    var text4 = document.createTextNode("Spock"); 
+    b4.appendChild(text4);
+    var divButton4 = document.getElementById("button1").appendChild(b4);
+
+    var b5 = document.createElement("button");
+    b5.setAttribute("id", "myButton"); 
+    b5.setAttribute("class", "btn btn-primary"); 
+    b5.addEventListener("click",function(){go("Lizard");});
+    var text5 = document.createTextNode("Lizard"); 
+    b5.appendChild(text5);
+    var divButton5 = document.getElementById("button1").appendChild(b5);
+
+	var b6 = document.createElement("button");
+	b6.setAttribute("id", "myButton"); 
+	b6.setAttribute("class", "btn btn-primary"); 
+	b6.addEventListener("click",function(){results();});
+	var text6 = document.createTextNode("Results"); 
+	b6.appendChild(text6);
+	var divButton6 = document.getElementById("button1").appendChild(b6);
+
+    function go(useroption) {
+    	var computeroptions = ["Rock", "Paper", "Scissors","Spock", "Lizard"];
+    	var rand = Math.floor((Math.random() * 4));
+    	//console.log("User option " + useroption)
+    	//console.log("Computer option " + computeroptions[rand]);
+
+    	var arraything = {
+            Rock: {Scissors:'Crushes', Lizard:'Crushes', Spock: 'Gets vapourised by', Paper: 'Gets covered by', Rock: 'Draws'},
+            Paper: {Rock:'Covers', Spock:'Disproves', Scissors:'Gets cut by', Lizard:'Gets eaten by', Paper: 'Draws'},
+            Scissors: {Paper: 'Cuts', Lizard: 'Decapitates', Rock:'Gets vapourised by', Spock:'Get smahed by', Scissors: 'Draws'},
+            Spock: {Scissors: 'Smashes', Rock: 'Vapourises', Paper: 'Gets cut by', Lizard: 'Gets Posioned by', Spock: 'Draws'},
+            Lizard: {Spock: 'Posions', Paper: 'Eats', Rock: 'Gets crushed by rock',Lizard: 'Gets decapitated by', Lizard: 'Draws'}}
+
+        var array2 = {
+            Rock: 1,
+            Paper: 2,
+            Scissors: 3,
+            Spock: 4,
+            Lizard: 5
+        }
+
+        console.log(useroption + " " + arraything[useroption][computeroptions[rand]] + " " + computeroptions[rand]);
+    	
+    }
+
+    function results() {
+    	document.getElementById("gp").innerHTML = "Games Played: " + gPlayed;
+    	document.getElementById("pw").innerHTML = "Player won: " + pWins;
+    	document.getElementById("cw").innerHTML = "Computer won: " + comWins;
+    	document.getElementById("numr").innerHTML = "Number of times rock was selected: " + rk;
+    	document.getElementById("nump").innerHTML = "Number of times paper was selected: " + pa;
+    	document.getElementById("nums").innerHTML = "Number of times scissors was selected: " + sc;
+    	document.getElementById("numd").innerHTML = "Number of draws: " + draws;
+    }
+</script>
+</html>
